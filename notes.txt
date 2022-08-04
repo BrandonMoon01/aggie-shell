@@ -1,0 +1,18 @@
+command pipelining - output of one becomes input of next command
+    utilize dup2 and pipelining
+    use command list to create pipeline
+     
+output redirection - change stdout to file
+    open the file for writing as a file descriptor
+    use dup2 to redirect stdout (1) from above file descriptor
+input redirection - change stdin from file
+    open the file for reading as a file descriptor
+    use dup2 to redirect stdin (0) from above file descriptor
+
+Files for redirection are stored in the Command class
+
+Handle commands that run in the background (use the & symbol as the last char)
+    return the user prompt to the user control until command is done
+    use Command->isBackground()
+    store pid from fork() into vector of background processes
+    before prompting user, iterate over vector to reap processes
